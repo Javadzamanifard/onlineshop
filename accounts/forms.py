@@ -8,9 +8,9 @@ class CustomUserChangeForm(UserChangeForm):
         model = get_user_model()
         #---------------------------
         #1
-        # fields = UserChangeForm.Meta.fields
+        # fields = UserChangeForm.Meta.fields + ('national_id', 'phone_number', )
         #2
-        fields = ('username', 'email',)
+        fields = ('username', 'email','national_id', 'phone_number', )
 
 
 
@@ -19,6 +19,6 @@ class CustomUsercreationForm(UserCreationForm):
         model = get_user_model()
         #---------------------------
         #1
-        # fields = UserCreationForm.Meta.fields
+        # fields = UserCreationForm.Meta.fields + ('national_id', 'phone_number', )
         #2
-        fields = ('username', 'email',)
+        fields = ('username', 'email', 'national_id', 'phone_number', )
