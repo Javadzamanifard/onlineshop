@@ -2,6 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% load widget_tweaks %}
+{% load socialaccount %}
 
     <!-- Bootstrap CSS -->
     {% block CSS %}
@@ -30,6 +31,9 @@
                 </div>
 
                 <button type="submit" class="btn btn-success mt-3 w-100">Login</button>
+                <p><a href="{% provider_login_url 'google' %}" class="btn-small btn-light border mt-3">
+                                <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" style="height:20px; margin-right:10px;"> ورود با حساب گوگل </a>
+                </p>
                 <p><a href="{% url 'account_reset_password' %}" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">فراموشی رمز عبور؟</a></p>
                 <p><a href="{% url 'signup' %}" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">ایجاد حساب کاربری جدید</a></p>
             </form>
