@@ -145,7 +145,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -156,12 +156,25 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # More recommended settings for customizing allauth
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 ACCOUNT_SESSION_REMEMBER = True
-ACCOUNT_AUTHENTICATION_METHOD = 'email' # ورود با ایمیل or 'username' , 'username_email'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email' # ورود با ایمیل or 'username' , 'email'
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = 'optional' #  فعال‌سازی تایید ایمیل or  'none', 'mandatory'
 
 # development
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = str(BASE_DIR.joinpath('media'))
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+ACCOUNT_FORMS = {
+    'signup': 'accounts.forms.CustomSignUpForm',
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}{% endblock title %}</title>
+
+    {# لینک‌های عمومی CSS #}
+    {% comment %} <link rel="stylesheet" href="{% static 'css/main.css' %}"> {% endcomment %}
+
+    {# بلاک مخصوص برای CSS های اضافی در صفحات دیگر #}
+    {% block CSS %}
+    {% endblock CSS %}
+</head>
+<body>
+
+    {% comment %} <header>
+        {# استفاده از include برای بخش‌های جداگانه مانند منو #}
+        {% include 'partials/_header.html' %}
+    </header> {% endcomment %}
+
+    <main>
+        {# مهم‌ترین بلاک که محتوay اصلی هر صفحه در آن قرار می‌گیرد #}
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    {% comment %} <footer>
+        {% include 'partials/_footer.html' %}
+    </footer> {% endcomment %}
+
+    {# لینک‌های عمومی جاوا اسکریپت #}
+    {% comment %} <script src="{% static 'js/main.js' %}"></script> {% endcomment %}
+
+    {# بلاک مخصوص برای اسکریپت‌های اضافی در صفحات دیگر #}
+    {% block scripts %}
+    {% endblock scripts %}
+
+</body>
+</html>
