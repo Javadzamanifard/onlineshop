@@ -48,6 +48,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'crispy_forms',
+    'crispy_bootstrap5',
+    'widget_tweaks',
 ]
 SITE_ID = 1
 SOCIALACCOUNT_PROVIDERS = {
@@ -178,3 +181,7 @@ LOGOUT_REDIRECT_URL = 'home'
 ACCOUNT_FORMS = {
     'signup': 'accounts.forms.CustomSignUpForm',
 }
+
+# Bootstrap config
+CRISPY_ALLOWED_TEMPLAATE_PACKS = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
