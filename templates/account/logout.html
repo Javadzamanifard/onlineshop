@@ -1,0 +1,34 @@
+{% extends "_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% load socialaccount %}
+
+    <!-- Bootstrap CSS -->
+    {% block CSS %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    {% endblock CSS %}
+
+    {% block title %}Logout{% endblock title %}
+
+{% block content %}
+    <div class="d-flex justify-content-center mt-5" dir="rtl">
+        <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-xs-6 bg-white m-3 m-sm-5 border rounded px-4 pt-4 pb-3 shadow">
+            <form method="post" action=" {% url 'account_logout' %}">
+                {% csrf_token %}
+                <h1 class="text-center">Logout</h1>
+                <P> آیا مطمئن هستید که میخواهید از حساب کاربری خود خارج شوید؟</p>
+                <button type="submit" class="btn btn-success mt-3 w-100">Logout</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block script %}
+    <!-- jQuery first, then Bootstrap JS. -->
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js" crossorigin="anonymous"></script>
+{% endblock script %}
