@@ -21,13 +21,20 @@
                 {% csrf_token %}
                 <h1 class="text-center">Login</h1>
                 {% comment %} {{ form | crispy }} {% endcomment %}
-                <div class="form-group">
+                {% comment %} <div class="form-group">
                     <label for="login" style="display:block; margin-bottom:5px;">ایمیل یا نام کاربری</label>
                     <input type="text" name="login" style="display: inline-block; width: 100%;">
+                    {{ form.login.errors }}
+                </div>                {% endcomment %}
+                <div class="form-group">
+                    <label for="login"> ایمیل یا نام کاربری</label>
+                    {{ form.login|add_class:"form-control" }}
+                    {{ form.login.errors }}
                 </div>
                 <div class="form-group mt-3">
                     <label for="password" style="display:block; margin-bottom:5px;">رمز عبور</label>
                     <input type="password" name="password" style="display: inline-block; width: 100%;">
+                    {{ form.password.errors }}
                 </div>
 
                 <button type="submit" class="btn btn-success mt-3 w-100">Login</button>

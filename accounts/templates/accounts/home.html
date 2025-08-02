@@ -1,1 +1,8 @@
 Hello this is homepage
+{% block content %}
+    {% if user.is_authenticated %}
+        <p><a href="{% url 'account_change_password' %}" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">  تغییر رمز عبور</a></p>
+    
+    {% endif %}
+
+{% endblock content %}
