@@ -1,3 +1,35 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
+from .models import Product, Category
 
-# Create your views here.
+class ProductListView(ListView):
+    model = Product
+    template_name = 'products/product_list.html'
+    context_object_name = 'products' # نام متغیری که در تمپلیت استفاده می‌شود
+    queryset = Product.objects.all()
+
+
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'products/product_detail.html'
+    context_object_name = 'product'
+    # slug_field و slug_url_kwarg را برای استفاده از اسلاگ در URL مشخص می‌کنیم
+    slug_field = 'slug'
+    slug_url_kwarg = 'product_slug'
+
+
+
+
+# from django.shortcuts import render, get_object_or_404
+
+# def product_detail_view(request, product_slug):
+#     product = get_object_or_404(Product, slug=product_slug)
+    
+#     context = {
+#         'product': product,
+#     }
+    
+#     return render(request, 'products/product_detail.html', context)
+
+
+
