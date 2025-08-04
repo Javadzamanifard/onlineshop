@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # local apps
     'accounts',
     'profiles',
+    'products',  # or products.apps.ProductsConfig
     
     # Thirdpart apps
     'allauth',
