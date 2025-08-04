@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     
     # local apps
     'accounts',
+    'profiles',
     
     # Thirdpart apps
     'allauth',
