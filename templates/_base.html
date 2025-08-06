@@ -1,9 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'assets/img/icon.png' %}">
     <title>{% block title %}{% endblock title %}</title>
 
     {# لینک‌های عمومی CSS #}
@@ -21,6 +24,7 @@
         {# استفاده از include برای بخش‌های جداگانه مانند منو #}
         {% include 'partials/_header.html' %}
     </header> {% endcomment %}
+    {% include 'partials/header.html' %}
 
     <main>
         {# مهم‌ترین بلاک که محتوay اصلی هر صفحه در آن قرار می‌گیرد #}
@@ -40,6 +44,8 @@
     {# بلاک مخصوص برای اسکریپت‌های اضافی در صفحات دیگر #}
     {% block scripts %}
     {% endblock scripts %}
+
+    {% include "partials/footer.html" %}
 
 </body>
 </html>

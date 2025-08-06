@@ -7,6 +7,7 @@ class ProductListView(ListView):
     template_name = 'products/product_list.html'
     context_object_name = 'products' # نام متغیری که در تمپلیت استفاده می‌شود
     queryset = Product.objects.all()
+    paginate_by = 4
 
 
 class ProductDetailView(DetailView):
