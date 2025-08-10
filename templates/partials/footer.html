@@ -1,15 +1,85 @@
 {% load static %}
+<style>
+/* FEATURES */
+    .features {
+        background: #fff6e6;
+        padding: 2.7rem 0 2.1rem 0;
+    }
 
+    .feature-item {
+        text-align: center;
+        margin-bottom: 1.6rem;
+    }
+
+    .feature-item h5 {
+        font-weight: 700;
+        color: #333;
+        font-size: 1.1rem;
+    }
+
+    .feature-item p {
+        color: #666;
+        font-size: 0.95rem;
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+        color: #ff9300;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 4px 18px #ffc10710;
+        width: 63px;
+        height: 63px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 0.8rem auto;
+    }
+</style>
 <!-- Footer Start-->
 <footer class="footer">
+    <section class="features">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-6 col-md-3">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="bi bi-truck"></i></div>
+                        <div class="feature-title">ارسال سریع</div>
+                        <div class="feature-desc">سراسر کشور</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="bi bi-shield-lock"></i></div>
+                        <div class="feature-title">پرداخت امن</div>
+                        <div class="feature-desc">کاملا مطمئن</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="bi bi-arrow-counterclockwise"></i></div>
+                        <div class="feature-title">ضمانت برگشت</div>
+                        <div class="feature-desc">تا ۷ روز</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="bi bi-star"></i></div>
+                        <div class="feature-title">پشتیبانی عالی</div>
+                        <div class="feature-desc">۷ روز هفته</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <div class="footer-top bg-color ptb--50" data-bg-color="#f6f6f6">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-9 text-center">
                     <div class="footer-widget mb--50">
-                        <div class="textwidget">
+                        {% comment %} <div class="textwidget">
                             <img src="{% static 'assets/img/codingyar_logo.png' %}" alt="Logo">
-                        </div>
+                        </div> {% endcomment %}
                     </div>
                     <div class="footer-widget mb--50 pb--1">
                         <ul class="footer-menu">

@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Product, Category
+from django.shortcuts import get_object_or_404
+
 
 class ProductListView(ListView):
     model = Product
@@ -16,21 +18,7 @@ class ProductDetailView(DetailView):
     context_object_name = 'product'
     # slug_field و slug_url_kwarg را برای استفاده از اسلاگ در URL مشخص می‌کنیم
     slug_field = 'slug'
-    slug_url_kwarg = 'product_slug'
-
-
-
-
-# from django.shortcuts import render, get_object_or_404
-
-# def product_detail_view(request, product_slug):
-#     product = get_object_or_404(Product, slug=product_slug)
-    
-#     context = {
-#         'product': product,
-#     }
-    
-#     return render(request, 'products/product_detail.html', context)
+    slug_url_kwarg = 'slug'
 
 
 

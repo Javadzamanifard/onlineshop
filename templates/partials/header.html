@@ -1,5 +1,26 @@
 {% load static %}
 
+{% block CSS %}
+    <link rel="stylesheet" href="{% static 'assets/css/_base.css' %}">
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/vendor.css' %}">
+
+    <!-- style css -->
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+{% endblock CSS %}
+
+<style>
+    .header-inner.fixed-header {
+    background-color: #fff8ee !important; /* رنگ نارنجی ملایم */
+    border-bottom: 1px solid #ffe5c9;   /* یک خط جداکننده ظریف در پایین هدر */
+
+        /* این دو خط جدید را برای منحنی کردن گوشه‌ها اضافه کنید */
+    border-bottom-left-radius: 65px;
+    border-bottom-right-radius: 65px;
+}
+</style>
+
 <header class="header">
     <div class="header-inner fixed-header">
         <div class="container">
@@ -9,7 +30,8 @@
                         <div class="site-branding" style="margin-right: 30px;">
                             <a href="index.html" class="logo">
                                 <figure class="logo--normal d-none d-sm-block">
-                                    <img class="px-5" src="{% static 'assets/img/codingyar_logo.png' %}" style="max-height: 50px; margin-bottom: -15px;" alt="Logo">
+                                    {% comment %} <img class="px-5" src="{% static 'assets/img/codingyar_logo.png' %}" style="max-height: 50px; margin-bottom: -15px;" alt="Logo"> {% endcomment %}
+                                    <i class="bi bi-shop" style="font-size: 5rem;"></i>
                                 </figure>
                             </a>
                         </div>
@@ -43,18 +65,21 @@
                     <ul class="header-toolbar">
                         <li class="header-toolbar__item">
                             <a href="wishlist.html" class="header-toolbar__btn mx-4">
-                                <i class="flaticon flaticon-like"></i>
+                                {% comment %} <i class="flaticon flaticon-like"></i> {% endcomment %}
+                                <i class="bi bi-heart-fill"></i>
                             </a>
                         </li>
                         <li class="header-toolbar__item mini-cart-item">
                             <a href="#miniCart" class="header-toolbar__btn toolbar-btn mini-cart-btn">
-                                <i class="flaticon flaticon-shopping-cart"></i>
+                                {% comment %} <i class="flaticon flaticon-shopping-cart"></i> {% endcomment %}
+                                <i class="bi bi-cart3"></i>
                                 <sup class="mini-cart-count">2</sup>
                             </a>
                         </li>
                         <li class="header-toolbar__item user-info">
                             <a href="my-account.html" class="header-toolbar__btn">
-                                <i class="flaticon flaticon-user"></i>
+                                {% comment %} <i class="flaticon flaticon-user"></i> {% endcomment %}
+                                <i class="bi bi-person-fill"></i>
                             </a>
                             <ul class="user-info-menu">
                                 <li>
@@ -73,7 +98,8 @@
                         </li>
                         <li class="header-toolbar__item">
                             <a href="#searchForm" class="header-toolbar__btn toolbar-btn">
-                                <i class="flaticon flaticon-search"></i>
+                                {% comment %} <i class="flaticon flaticon-search"></i> {% endcomment %}
+                                <i class="bi bi-search"></i>
                             </a>
                         </li>
                     </ul>
