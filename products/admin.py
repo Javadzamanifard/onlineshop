@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product
+from .models import Category, Product, Comment
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -14,5 +14,10 @@ class ProductAdmin(admin.ModelAdmin):
     list_editable = ['price', 'stock',] # امکان ویرایش مستقیم از لیست
     prepopulated_fields = {'slug': ('name',)}
     search_fields = ['name', 'description']
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['user', 'product', 'content', 'is_active']
 
 

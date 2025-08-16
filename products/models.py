@@ -1,6 +1,9 @@
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
+from django.utils import timezone
+
+from accounts.models import CustomUser
 
 class Category(models.Model):
     name = models.CharField(max_length=255, )
@@ -37,5 +40,29 @@ class Product(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        # return reverse('product_detail', kwargs={'pk': self.pk})
-        return reverse('product_detail', kwargs={'slug': self.slug})
+        return reverse('product_detail', kwargs={'pk': self.pk})
+        # return reverse('product_detail', kwargs={'slug': self.slug})
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='comments')
+    guest_name = models.CharField(max_length=80, blank=True, null=True, help_text='نام مهمان در صورت عدم لاگین')
+    
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="comments")
+    content = models.TextField()
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='replies', blank = True, null = True)
+    
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    is_active = models.BooleanField(default=True)
+    
+
+    class Meta:
+        ordering = ['-created_at']
+    
+    
+    def __str__(self):
+        if self.user:
+            return f'Comment by {self.user} on {self.product}'
+        return f'Comment by {self.guest_name or "Anonymous"} on {self.product}'

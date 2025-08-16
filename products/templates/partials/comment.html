@@ -1,0 +1,36 @@
+{% load static %}
+
+<li class="d-flex mb-4">
+    {% comment %} <div class="flex-shrink-0">
+        <img src="{% static 'assets/img/default-avatar.png' %}" alt="avatar" width="60" height="60" class="rounded-circle">
+    </div> {% endcomment %}
+
+    <div class="ms-3 flex-grow-1">
+        <div>
+            <h6 class="fw-bold mb-0">
+                {{ comment.user.username|default:comment.guest_name|default:"مهمان" }}
+            </h6>
+            <span class="text-muted small">{{ comment.created_at }}</span>
+        </div>
+        
+        <p class="mb-2 mt-2">
+            {{ comment.content|linebreaks }}
+        </p>
+
+        <div class="text-start">
+            <a href="#comment-form-wrapper" role="button" class="text-danger small text-decoration-none fw-bold" onclick="setParentId(event, {{ comment.id }})">
+                پاسخ
+            </a>
+        </div>
+
+        {% if comment.replies.all %}
+            <div class="replies mt-3">
+                <ul class="list-unstyled">
+                    {% for reply in comment.replies.all %}
+                        {% include "partials/comment.html" with comment=reply %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+</li>
