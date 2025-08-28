@@ -11,3 +11,15 @@ class CommentForm(forms.ModelForm):
             'guest_name': forms.TextInput(attrs={'placeholder': 'نام شما (اختیاری)'}),
             'parent': forms.HiddenInput(attrs={'id' : 'parent_id'}),
         }
+
+
+class SearchForm(forms.Form):
+    search = forms.CharField(
+        label='جستجو',
+        required=False, # جستجو نباید اجباری باشد
+        max_length=100,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'جستجوی محصول...',
+            'class': 'form-control' # برای استایل‌دهی با بوت‌استرپ (اختیاری)
+        })
+    )

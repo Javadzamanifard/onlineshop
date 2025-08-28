@@ -78,6 +78,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                    {% if request.GET.search %}
+                                        <h3>نتایج جستجو برای: "{{ request.GET.search }}"</h3>
+                                    {% else %}
+                                        <h3>همه محصولات</h3>
+                                    {% endif %}
                                     <nav class="pagination-wrap mt--35 mt-md--25 pb-5">
                                         <ul class="pagination">
 

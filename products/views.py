@@ -2,16 +2,58 @@ from django.shortcuts import redirect, render
 from django.views.generic import ListView, DetailView
 from .models import Product, Category, Comment
 from django.shortcuts import get_object_or_404
+from django.db.models import Q
 
-from .forms import CommentForm
+from .forms import CommentForm, SearchForm
 
 
 class ProductListView(ListView):
     model = Product
     template_name = 'products/product_list.html'
-    context_object_name = 'products' # نام متغیری که در تمپلیت استفاده می‌شود
-    queryset = Product.objects.all()
-    paginate_by = 4
+    context_object_name = 'products'  # نام متغیر در تمپلیت
+    paginate_by = 4                   # صفحه‌بندی
+
+    def get_queryset(self):
+        """
+        این متد queryset اصلی را بازنویسی می‌کند تا منطق جستجو را اضافه کند.
+        """
+        # ابتدا queryset پیش‌فرض را می‌گیریم (که معادل Product.objects.all() است)
+        
+        queryset = super().get_queryset()
+        
+        # عبارت جستجو شده را از پارامتر GET در URL می‌خوانیم
+        query = self.request.GET.get('search')
+            
+        if query:
+            # ۱. عبارت جستجو را به لیستی از کلمات کلیدی تبدیل می‌کنیم
+            # مثلاً "کفش ادیداس" تبدیل می‌شود به ['کفش', 'ادیداس']
+            keywords = query.split()
+
+            # ۲. یک فیلتر Q اولیه و خالی می‌سازیم تا شرایط را به آن اضافه کنیم
+            combined_q = Q()
+                        # ۳. برای هر کلمه کلیدی، یک شرط به فیلتر اصلی AND می‌کنیم
+            for kw in keywords:
+                combined_q &= (
+                    Q(name__icontains=kw) | Q(description__icontains=kw)
+                )
+            # اگر عبارتی برای جستجو وجود داشت، queryset را فیلتر می‌کنیم
+            return queryset.filter(combined_q)
+        
+        # اگر جستجویی در کار نبود، همان queryset کامل را برمی‌گردانیم
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        """
+        این متد context را بازنویسی می‌کند تا فرم جستجو را به آن اضافه کند.
+        """
+        # ابتدا context پیش‌فرض را از کلاس پدر می‌گیریم
+        context = super().get_context_data(**kwargs)
+        
+        # فرم جستجو را به context اضافه می‌کنیم تا در تمپلیت قابل استفاده باشد
+        # مقدار اولیه فرم را با چیزی که کاربر جستجو کرده پر می‌کنیم
+        context['form'] = SearchForm(self.request.GET or None)
+        
+        return context
 
 
 # class ProductDetailView(DetailView):
