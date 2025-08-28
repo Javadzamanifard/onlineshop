@@ -44,3 +44,21 @@ def profile_update_view(request):
         'profile_form': profile_form
     }
     return render(request, 'profiles/profile_form.html', context)
+
+
+@login_required  # این دکوراتور تضمین می‌کند که فقط کاربران لاگین کرده به این ویو دسترسی دارند
+def my_profile_view(request):
+    # پروفایل مرتبط با کاربری که در حال حاضر لاگین است را پیدا می‌کنیم
+    # استفاده از try-except برای جلوگیری از خطا در صورتی که کاربری پروفایل نداشته باشد
+    try:
+        profile = request.user.profile
+    except Profile.DoesNotExist:
+        # اگر پروفایلی برای کاربر وجود نداشت، می‌توانید یکی بسازید یا یک پیام خطا نمایش دهید
+        # در اینجا ما فرض می‌کنیم که پروفایل همیشه وجود دارد.
+        # اگر کاربر جدید ثبت‌نام می‌کند، باید یک پروفایل هم برایش بسازید (با استفاده از signals)
+        profile = None
+
+    context = {
+        'profile': profile
+    }
+    return render(request, 'profiles/profile_detail.html', context)

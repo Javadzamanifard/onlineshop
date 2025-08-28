@@ -1,0 +1,107 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="main-body">
+        
+        {% if profile %}
+        <div class="row gutters-sm">
+            
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            
+                            {% if profile.avatar %}
+                                <img src="{{ profile.avatar.url }}" alt="{{ profile.user.username }}" class="rounded-circle" width="150">
+                            {% else %}
+                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                            {% endif %}
+                            
+                            <div class="mt-3">
+                                <h4>{{ profile.user.username }}</h4>
+                                <p class="text-secondary mb-1">{{ profile.user.email }}</p>
+                                <p class="text-muted font-size-sm">ایران، تهران</p> <a href="{% url 'profiles:update' %}" class="btn btn-primary">ویرایش پروفایل</a>
+                                {% comment %} <a href="{% url 'account_logout' %}" class="btn btn-outline-primary">خروج</a> {% endcomment %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body profile-details">
+
+                        <div class="row align-items-center">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">نام کامل</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ profile.user.get_full_name|default:"ثبت نشده" }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row align-items-center">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">ایمیل</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ profile.user.email }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row align-items-center">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">شماره تماس</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ profile.user.phone_number }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row align-items-center">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">بیوگرافی</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ profile.bio|linebreaksbr|default:"بیوگرافی ثبت نشده است." }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row align-items-center">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">تاریخ عضویت</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ profile.user.date_joined|date:"Y/m/d" }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {% else %}
+            <div class="alert alert-warning" role="alert">
+                پروفایلی برای حساب کاربری شما یافت نشد.
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}
+<style>
+    /* استایل‌های سفارشی برای خوانایی بیشتر پروفایل */
+    .profile-details .row {
+        margin-bottom: 1rem; /* کمی فاصله بین ردیف‌ها */
+    }
+    .profile-details h6 {
+        font-size: 1rem;     /* اندازه فونت برچسب‌ها */
+        font-weight: 600;    /* کمی ضخیم‌تر کردن فونت برچسب */
+        color: #4f4f4f;
+    }
+    .profile-details .text-secondary {
+        font-size: 0.95rem;  /* اندازه فونت مقادیر */
+    }
+</style>

@@ -28,7 +28,7 @@
                 <div class="col-xl-9 col-lg-8 col-5 col-xs-0 col-none col-sm-block p-0">
                     <nav class="main-navigation">
                         <div class="site-branding" style="margin-right: 30px;">
-                            <a href="index.html" class="logo">
+                            <a href="{% url 'product_list' %}" class="logo">
                                 <figure class="logo--normal d-none d-sm-block">
                                     {% comment %} <img class="px-5" src="{% static 'assets/img/codingyar_logo.png' %}" style="max-height: 50px; margin-bottom: -15px;" alt="Logo"> {% endcomment %}
                                     <i class="bi bi-shop" style="font-size: 5rem;"></i>
@@ -93,13 +93,13 @@
                             </a>
                         </li>
                         <li class="header-toolbar__item user-info">
-                            <a href="my-account.html" class="header-toolbar__btn">
+                            <a href="{% url 'profiles:my_profile' %}" class="header-toolbar__btn">
                                 {% comment %} <i class="flaticon flaticon-user"></i> {% endcomment %}
                                 <i class="bi bi-person-fill"></i>
                             </a>
                             <ul class="user-info-menu">
                                 <li>
-                                    <a class="text-right" href="my-account.html">حساب کاربری</a>
+                                    <a class="text-right" href="{% url 'profiles:my_profile' %}">حساب کاربری</a>
                                     <a class="text-right" href="order-tracking.html">تاریخچه سفارشات</a>
                                 </li>
                             </ul>

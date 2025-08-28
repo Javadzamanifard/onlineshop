@@ -3,6 +3,9 @@ from django import forms
 from accounts.models import CustomUser
 from .models import Profile
 
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Field
+
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = CustomUser
@@ -10,7 +13,6 @@ class UserUpdateForm(forms.ModelForm):
         help_texts = {
             'email': 'ایمیل باید منحصر به فرد باشد.',
         }
-
 
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:

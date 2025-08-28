@@ -32,7 +32,16 @@ class Profile(models.Model):
         except Exception as e:
             # اگر پردازش تصویر با خطا مواجه شد، از کرش کردن جلوگیری می‌کنه
             print(f"خطا در پردازش تصویر پروفایل: {e}")
-
+    
+    @property
+    def full_name(self):
+        """ 
+        نام کامل کاربر را برمی‌گرداند.
+        اگر نام کامل وجود نداشت، همان نام کاربری را برمی‌گرداند.
+        """
+        if self.user.first_name and self.user.last_name:
+            return f"{self.user.first_name} {self.user.last_name}"
+        return self.user.username
     
     def get_absolute_url(self):
         return reverse('profiles:detail', kwargs={'slug': self.slug})

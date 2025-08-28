@@ -6,6 +6,14 @@
 
 {% block content %}
         <body dir='rtl'>
+
+            {% comment %} <div class="container mt-5">
+                {% if request.GET.search %}
+                    <h3>نتایج جستجو برای: "{{ request.GET.search }}"</h3>
+                {% else %}
+                    <h3>همه‌ی محصولات</h3>
+                {% endif %}
+            </div> {% endcomment %}
             <!-- Main Wrapper Start -->
             <div class="wrapper">
                 <!-- Main Content Wrapper Start -->
@@ -17,8 +25,12 @@
                                     <div class="shop-toolbar">
                                         <div class="container row align-items-center">
                                             <div class="col-lg-12 mb-md--50 mb-xs--10">
-                                                <div class="shop-toolbar__left d-flex align-items-sm-center align-items-start flex-sm-row flex-column">
-                                                    {% comment %} <p class="product-pages">نمایش ۱-۲۰ از ۴۹</p> {% endcomment %}
+                                                <div class="shop-toolbar__left d-flex align-items-sm-center align-items-start flex-sm-row flex-column mt-5">
+                                                    {% if request.GET.search %}
+                                                        <h3>نتایج جستجو برای: "{{ request.GET.search }}"</h3>
+                                                    {% else %}
+                                                        <h3>همه‌ی محصولات</h3>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>
@@ -78,11 +90,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {% if request.GET.search %}
-                                        <h3>نتایج جستجو برای: "{{ request.GET.search }}"</h3>
-                                    {% else %}
-                                        <h3>همه محصولات</h3>
-                                    {% endif %}
                                     <nav class="pagination-wrap mt--35 mt-md--25 pb-5">
                                         <ul class="pagination">
 
