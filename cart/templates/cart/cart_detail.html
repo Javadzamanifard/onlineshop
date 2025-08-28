@@ -1,0 +1,178 @@
+
+{% extends "_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} سبد خرید {% endblock %}
+
+
+{% block content %}
+<div class="wrapper">
+    <div class="breadcrumb-area bg-color ptb--90" data-bg-color="#f6f6f6">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center flex-sm-row flex-column">
+                        <h1 class="page-title">سبد خرید</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-content-wrapper">
+        <div class="page-content-inner ptb--80">
+            <div class="container">
+                {% if cart %}
+                    <div class="row">
+                        <div class="col-lg-8 mb-md--50">
+                            <div class="table-content table-responsive">
+                                <table class="table text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>&nbsp;</th>
+                                            <th class="text-right" colspan="2">محصول</th>
+                                            <th>قیمت واحد</th>
+                                            <th>تعداد</th>
+                                            <th class="text-left">مجموع</th>
+                                        </tr>
+                                    </thead>
+                                    {% for item in cart %}
+                                        <tbody>
+                                                <tr>
+                                                    <td class="product-remove">
+                                                        <a href="{% url 'cart:cart_remove' item.product.id %}"><i class="flaticon flaticon-cross" title="حذف محصول"></i></a>
+                                                    </td>
+                                                    <td class="product-thumbnail text-left">
+                                                        <img src="{{ item.product.image.url }}" alt="">
+                                                    </td>
+                                                    
+                                                    <td class="product-name text-right">
+                                                        <a href="{% url 'product_detail' item.product.id %}">{{ item.product.name }}</a>
+                                                    </td>
+
+                                                    <td class="product-price">
+                                                        <span dir="ltr">{{ item.price }}</span> تومان
+                                                    </td>
+                                                    
+                                                    <td class="product-quantity">
+                                                        <form class="d-flex" action="{% url 'cart:cart_add' item.product.id %}" method = "POST">
+                                                            {% csrf_token %}
+                                                            <div class="quantity">
+                                                                <input type="number" class="quantity-input" name="quantity" id="qty-1" value= {{item.quantity}} min="1" max="30">
+                                                            </div>
+                                                            {% comment %} {{ item.update_quantity_override_quantity_form.override_quantity }} {% endcomment %}
+                                                            <input type="hidden" name="override_quantity" value="True">
+                                                            <button type="submit" class="small"><i class="fa fa-refresh"></i></button>
+                                                        </form>
+                                                    </td>
+                                                    
+                                                    {% comment %} <td class="product-quantity">
+                                                        <form class="d-flex" action="{% url 'cart:cart_add' item.product.id %}" method="POST">
+                                                            {% csrf_token %}
+                                                            <div class="quantity-wrapper">
+                                                                <button type="button" class="qty-btn minus">−</button>
+                                                                <input type="number" 
+                                                                    class="quantity-input" 
+                                                                    name="quantity" 
+                                                                    id="qty-1" 
+                                                                    value="{{ item.quantity }}" 
+                                                                    min="1" 
+                                                                    max="30">
+                                                                <button type="button" class="qty-btn plus">+</button>
+                                                            </div>
+                                                            <input type="hidden" name="override_quantity" value="True">
+                                                            <button type="submit" class="small">
+                                                                <i class="fa fa-refresh"></i>
+                                                            </button>
+                                                        </form>
+                                                    </td> {% endcomment %}
+
+                                                    <td class="product-total-price text-left">
+                                                        <span dir="ltr" class="font-weight-bold">{{ item.total_price }}</span> تومان
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        {% endfor %}
+                                </table>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <a href="#" class="btn btn-outline-secondary">ادامه خرید</a> {# <-- آدرس صفحه محصولات را اینجا قرار بده #}
+                                <form action="{% url 'cart:cart_clear' %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-danger">خالی کردن سبد خرید</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="cart-collaterals" style="position: sticky; top: 20px;">
+                                <div class="cart-totals border p-4 rounded">
+                                    <h5 class="font-weight-bold mb-3">جمع کل سبد خرید</h5>
+                                    <div class="cart-calculator">
+                                        <!-- جمع کل -->
+                                        <div class="cart-calculator__item d-flex justify-content-between mb-3">
+                                            <span>مجموع خرید</span>
+                                            <span dir="ltr">{{ cart.get_total_price }} تومان</span>
+                                        </div>
+
+                                        <!-- نمایش تخفیف فقط وقتی کوپن معتبر بود -->
+                                        {% if coupon and coupon.is_valid %}
+                                            <div class="cart-calculator__item d-flex justify-content-between mb-3 text-danger">
+                                                <span>تخفیف ({{ coupon.code }})</span>
+                                                <span dir="ltr">-{{ discount|floatformat:0 }} تومان</span>
+                                            </div>
+                                        {% endif %}
+
+                                        <!-- مبلغ قابل پرداخت -->
+                                        <div class="cart-calculator__item d-flex justify-content-between font-weight-bold border-top pt-3">
+                                            <span>مبلغ قابل پرداخت</span>
+                                            <span dir="ltr" class="text-success h5">
+                                                {% if total_price_after_discount %}
+                                                    {{ total_price_after_discount|floatformat:0 }} تومان
+                                                {% else %}
+                                                    {{ cart.get_total_price|floatformat:0 }} تومان
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- فرم کوپن -->
+                                    <div class="container mt-3">
+                                        <p class="font-weight-bold">کد تخفیف دارید؟</p>
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            <div class="input-group input-group">
+                                                
+                                                {% comment %} {{ coupon_form.code }} {% endcomment %}
+                                                <div class="flex-grow-2"> {{ coupon_form.code }} 
+                                                    <button type="submit" class="btn btn-success mt-2">اعمال</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <!-- دکمه ادامه پرداخت -->
+                                    <a href="#" class="btn btn-success btn-block mt-4">
+                                        ادامه جهت تسویه حساب
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="text-center p-5 border rounded bg-light">
+                        <i class="fa fa-shopping-basket fa-5x text-muted mb-4"></i>
+                        <h3 class="mb-3">سبد خرید شما خالی است!</h3>
+                        <p class="text-muted mb-4">برای شروع خرید، محصولات مورد نظر خود را به سبد اضافه کنید.</p>
+                        <a href="{% url 'product_list' %}" class="btn btn-primary"> {# <-- آدرس صفحه محصولات را اینجا قرار بده #}
+                            رفتن به فروشگاه
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% include "partials/footer.html" %}
+</div>
+{% endblock %}

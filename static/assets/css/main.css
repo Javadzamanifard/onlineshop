@@ -181,16 +181,37 @@ a:hover {
   color: #c2080f;
   text-decoration: none;
 }
-
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: auto !important;
+    margin: 0 !important;
 }
 
+/* Firefox */
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: number-input !important;
 }
+
+/* ================================
+   استایل فیلد quantity
+   ================================ */
+.quantity-input {
+    width: 60px;
+    padding: 4px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.quantity-input:focus {
+    border-color: #007bff;
+}
+
 
 a,
 a:hover,

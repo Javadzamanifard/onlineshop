@@ -4,11 +4,6 @@
     {% block title %} product list {% endblock title %}
     <!-- ************************* CSS Files ************************* -->
 
-    {% block CSS %}
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    {% endblock CSS %}
 {% block content %}
         <body dir='rtl'>
             <!-- Main Wrapper Start -->
@@ -67,7 +62,14 @@
                                                                             <span class="money text-danger">{{ product.price }}تومان</span>
                                                                         </span>
                                                                     </div>
-                                                                    <a href="cart.html" class="btn btn-small btn-bg-sand btn-color-dark px-3">اضافه کردن به سبد خرید</a>
+                                                                        <form action="{% url 'cart:cart_add' product.id %}" method="POST">
+                                                                            {% csrf_token %}
+                                                                            {% comment %} {{add_to_cart_form | crispy}} {% endcomment %}
+                                                                            {% comment %} <input type="hidden" class="quantity-input" name="quantity" id="qty" value="1" min="1" max="30"> {% endcomment %}
+                                                                            <input type="hidden" class="quantity-input" name="quantity" id="qty" value="1">
+                                                                            <button type="submit" class="btn btn-small btn-bg-sand btn-color-dark px-3 mt-3"> اضافه کردن به سبد خرید </button>
+                                                                        </form>
+                                                                    {% comment %} <a href="cart.html" class="btn btn-small btn-bg-sand btn-color-dark px-3">اضافه کردن به سبد خرید</a> {% endcomment %}
                                                                 </div>
                                                             </div>
                                                         </div>

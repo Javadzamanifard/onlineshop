@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'accounts',
     'profiles',
     'products',  # or products.apps.ProductsConfig
+    'cart',
     
     # Thirdpart apps
     'allauth',
@@ -90,6 +91,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
+                
+                'cart.context_processors.cart',
             ],
         },
     },
