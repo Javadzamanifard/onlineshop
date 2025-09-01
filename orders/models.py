@@ -22,7 +22,7 @@ class Order(models.Model):
     # اطلاعات مشتری در لحظه خرید (کپی می‌شود تا با تغییر پروفایل کاربر، سابقه از بین نرود)
     first_name  = models.CharField(max_length=100, verbose_name="نام")
     last_name   = models.CharField(max_length=100, verbose_name="نام خانوادگی")
-    email       = models.EmailField(verbose_name="ایمیل")
+    email       = models.EmailField(verbose_name="ایمیل", blank=True, null=True)
     phone       = models.CharField(max_length=11, verbose_name="شماره همراه")
     address     = models.CharField(max_length=255, verbose_name="آدرس")
     postal_code = models.CharField(max_length=20, verbose_name="کد پستی")

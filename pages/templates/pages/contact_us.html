@@ -1,0 +1,50 @@
+{% extends "_base.html" %}
+
+{% load static %}
+
+{% block CSS %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock CSS %}
+
+{% block content %}
+    <body>
+        <div class="contact-page-container">
+            <h1>یک فنجان گفتگو، مهمان ما باشید!</h1>
+            <p class="intro-text">
+                ما در [نام فروشگاه شما] باور داریم که بهترین ایده‌ها در یک گفتگوی ساده شکل می‌گیرند. اینجا خانه‌ای است که درهایش همیشه برای شنیدن صدای شما باز است. هر پیام شما، جرقه‌ای برای بهتر شدن ماست.
+            </p>
+
+            <div class="contact-info-wrapper">
+                
+                <div class="contact-card">
+                    <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                    <h3>تلفن تماس</h3>
+                    <p>0918***3809</p>
+                    <p class="info-text">(۷ صبح تا ۱۷ عصر)</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="icon"><i class="fas fa-envelope"></i></div>
+                    <h3>پست الکترونیکی</h3>
+                    <p><a href="mailto:javadzamanii.1374@gmail.com">javadzamanii.1374@gmail.com</a></p>
+                    <p class="info-text">پاسخگویی در سریع‌ترین زمان</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>آدرس ما</h3>
+                    <p style="direction: rtl;">[آدرس فروشگاه شما]</p>
+                    <p class="info-text">مراجعه با هماهنگی قبلی</p>
+                </div>
+
+            </div>
+
+            <h2 class="form-title">پیام شما، آغاز یک داستان جدید است</h2>
+
+            {% comment %} 
+                فرم تماس با ما شما می‌تواند در اینجا قرار بگیرد.
+                طراحی آن هم می‌تواند مشابه کارت‌های بالا باشد.
+            {% endcomment %}
+        </div>
+    </body>
+{% endblock content %}
