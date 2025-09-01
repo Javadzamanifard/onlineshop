@@ -1,0 +1,100 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %} ثبت سفارش {% endblock title %}
+
+{% block content %}
+<div class="main-content-wrapper">
+    <div class="page-content-inner">
+        <div class="container">
+            <div class="row pt--50 pb--80">
+
+                <div class="col-lg-7">
+                    <div class="checkout-title mt--10">
+                        <h2>جزئیات سفارش</h2>
+                    </div>
+                    <div class="checkout-form">
+                        <form action="." method="POST" class="form form--checkout">
+                            {% csrf_token %}
+                            
+                            
+                            {{ order_form | crispy }}
+{% comment %} 
+                            
+                            <div class="form-row mb--20">
+                                <div class="form__group col-md-6 mb-sm--30">
+                                    <label for="billing_fname" class="form__label form__label--2">نام  <span class="required">*</span></label>
+                                    <input type="text" name="{{order_form.first_name.name}}" id="billing_fname" class="form__input form__input--2">
+                                </div>
+                                <div class="form__group col-md-6">
+                                    <label for="billing_lname" class="form__label form__label--2">نام خانوادگی  <span class="required">*</span></label>
+                                    <input type="text" name="{{order_form.last_name.name}}" id="billing_lname" class="form__input form__input--2">
+                                </div>
+                            </div>
+                            <div class="form-row mb--20">
+                                <div class="form__group col-12">
+                                    <label for="billing_address" class="form__label form__label--2">آدرس</label>
+                                    <input  type="text" name="{{order_form.address.name}}" id="billing_address" class="form__input form__input--2">
+                                </div>
+                            </div>
+                            <div class="form-row mb--20">
+                                <div class="form__group col-12">
+                                    <label for="billing_phone" class="form__label form__label--2">شماره همراه <span class="required">*</span></label>
+                                    <input type="text" name="{{order_form.phone_number.name}}" id="billing_phone" class="form__input form__input--2">
+                                </div>
+                            </div>
+                            {% endcomment %}
+                            <button type="submit" class="btn btn-small btn-bg-sand btn-color-dark px-3 mt-4">ثبت سفارش و پرداخت</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 mt-md--40">
+                    <div class="order-details">
+                        <div class="checkout-title mt--10">
+                            <h2>خلاصه سفارش شما</h2>
+                        </div>
+                        <div class="table-content table-responsive mb--30">
+                            <table class="table order-table order-table-2">
+                                <thead>
+                                    <tr>
+                                        <th>محصول</th>
+                                        <th class="text-right">مجموع</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in cart %}
+                                        <tr>
+                                            <th>
+                                                {{ item.product.name }}
+                                                <strong><span>&#10005;</span> {{ item.quantity }}</strong>
+                                            </th>
+                                            <td class="text-right">{{ item.total_price }} تومان</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                    <tr class="cart-subtotal">
+                                        <th>مبلغ کل سبد خرید</th>
+                                        <td class="text-right"><strong>{{ cart.get_total_price }} تومان</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="checkout-payment">
+                            <h4 class="py-3">روش پرداخت</h4>
+                            <div class="payment-group mb--10">
+                                <div class="payment-radio">
+                                    <input type="radio" value="bank" name="payment-method" id="bank" checked>
+                                    <label class="payment-label" for="bank">درگاه آنلاین زرین پال</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> </div>
+    </div>
+</div>
+{% endblock content %}

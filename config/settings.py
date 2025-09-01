@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'profiles',
     'products',  # or products.apps.ProductsConfig
     'cart',
+    'orders',
     
     # Thirdpart apps
     'allauth',
