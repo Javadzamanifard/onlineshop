@@ -1,0 +1,54 @@
+{% extends "_base.html" %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2 class="mb-4">لیست علاقه‌مندی‌های من</h2>
+
+        {% if wishlist_products %}
+            <div class="row">
+                {% for product in wishlist_products %}
+                    <div class="col-md-3 mb-4">
+                        <div class="card h-100">
+                            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                                <p class="card-text">{{ product.price }} تومان</p>
+                            </div>
+                            <div class="card-footer text-center">
+                                <a href="{{ product.get_absolute_url }}" class="btn btn-primary">مشاهده محصول</a>
+                                
+                                <button class="wishlist-toggle-btn" data-product-id="{{ product.id }}" style="background: none; border: none; cursor: pointer;">
+                                    <i class="fa fa-heart" style="font-size: 24px; color: red;"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-info text-center">
+                <p>لیست علاقه‌مندی‌های شما خالی است.</p>
+                <a href="{% url 'product_list' %}" class="btn btn-primary">مشاهده همه محصولات</a>
+            </div>
+        {% endif %}
+
+        {% if is_paginated %}
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">قبلی</a></li>
+                    {% endif %}
+
+                    <li class="page-item disabled">
+                        <span class="page-link">صفحه {{ page_obj.number }} از {{ page_obj.paginator.num_pages }}</span>
+                    </li>
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">بعدی</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+
+    </div>
+{% endblock %}

@@ -56,9 +56,12 @@
                                                                     </a>
                                                                     <div class="ShoppingYar-product-action">
                                                                         <div class="product-action d-flex">
-                                                                            <a href="wishlist.html" class="action-btn">
+                                                                            {% comment %} <a href="wishlist.html" class="action-btn">
                                                                                 <i class="flaticon flaticon-like"></i>
-                                                                            </a>
+                                                                            </a> {% endcomment %}
+                                                                            <button class="wishlist-toggle-btn" data-product-id="{{ product.id }}" style="background: none; border: none; cursor: pointer;">
+                                                                                <i class="fa fa-heart" style="font-size: 24px; color: {% if product.id in user_wishlist_ids %}red{% else %}grey{% endif %};"></i>
+                                                                            </button>
                                                                         </div>
                                                                     </div>
                                                                     <span class="product-badge">تخفیف ویژه</span>

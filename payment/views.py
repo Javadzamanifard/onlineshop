@@ -15,6 +15,11 @@ def payment_process(request):
     price_toman = order.get_total_cost()
     price_rial = price_toman * 10
     
+    if not order_id:
+        # اگر شناسه سفارشی وجود نداشت، کاربر را به جایی منطقی هدایت کنید
+        return redirect('cart:cart_detail') # مثلا به سبد خرید
+    
+    
     ## For zarinpal
     req_headers = {
         'accept' : 'application/json',

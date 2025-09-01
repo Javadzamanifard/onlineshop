@@ -66,3 +66,20 @@ class Comment(models.Model):
         if self.user:
             return f'Comment by {self.user} on {self.product}'
         return f'Comment by {self.guest_name or "Anonymous"} on {self.product}'
+
+
+class WishList(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name="کاربر")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="محصول")
+    
+    added_date = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ اضافه شدن")
+    
+    def __str__(self):
+        return f"{self.product.name} در لیست علاقه‌مندی‌های {self.user.username}"
+
+    class Meta:
+        # این خط بسیار مهم است!
+        # از اضافه شدن یک محصول تکراری به لیست یک کاربر جلوگیری می‌کند
+        unique_together = ('user', 'product')
+        verbose_name = "لیست علاقه‌مندی"
+        verbose_name_plural = "لیست‌های علاقه‌مندی"

@@ -20,6 +20,9 @@
         <div class="col-lg-6">
             <div class="border rounded-3 p-3 text-center shadow-sm">
                 <img src="{{ product.image.url }}" class="img-fluid rounded-3" alt="{{ product.name }}">
+                <button class="wishlist-toggle-btn" data-product-id="{{ product.id }}" style="background: none; border: none; cursor: pointer;">
+                    <i class="fa fa-heart" style="font-size: 24px; color: {% if product.id in user_wishlist_ids %}red{% else %}grey{% endif %};"></i>
+                </button>
             </div>
         </div>
 

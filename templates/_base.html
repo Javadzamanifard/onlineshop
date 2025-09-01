@@ -42,6 +42,49 @@
     {# لینک‌های عمومی جاوا اسکریپت #}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.wishlist-toggle-btn').on('click', function(e) {
+                e.preventDefault(); // جلوگیری از رفتار پیش‌فرض دکمه
+
+                var button = $(this);
+                var productId = button.data('product-id');
+                var url = "{% url 'toggle_wishlist' %}"; // آدرس ویو جنگو
+
+                $.ajax({
+                    method: 'POST',
+                    url: url,
+                    data: {
+                        'product_id': productId,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}' // توکن امنیتی جنگو (بسیار مهم)
+                    },
+                    success: function(response) {
+                        if (response.status === 'added') {
+                            // تغییر رنگ قلب به قرمز (حالت فعال)
+                            button.find('i').css('color', 'red');
+                            console.log(response.message);
+                        } else if (response.status === 'removed') {
+                            // تغییر رنگ قلب به خاکستری (حالت غیرفعال)
+                            button.find('i').css('color', 'grey');
+                            console.log(response.message);
+                        }
+                    },
+                    error: function(xhr) {
+                        // اگر کاربر لاگین نکرده باشد، سرور خطای 403 می‌دهد
+                        if (xhr.status === 403) {
+                            alert("لطفا برای افزودن محصول به لیست علاقه‌مندی‌ها ابتدا وارد حساب کاربری خود شوید.");
+                            // می‌توانید کاربر را به صفحه لاگین هدایت کنید
+                            // window.location.href = "/login/";
+                        } else {
+                            alert("خطایی رخ داد. لطفا دوباره تلاش کنید.");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
     {% comment %} <script src="{% static 'js/main.js' %}"></script> {% endcomment %}
 
     {# بلاک مخصوص برای اسکریپت‌های اضافی در صفحات دیگر #}
