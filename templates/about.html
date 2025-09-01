@@ -1,0 +1,51 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block CSS %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock CSS %}
+{% block content %}
+
+
+<div class="about-page-container">
+    
+    <header class="about-hero">
+        <h1>داستان ما، تعهد ما</h1>
+    </header>
+
+    <section class="content-section">
+        <h2>از یک ایده تا خانه شما</h2>
+        <p>
+            به دنیای <strong>[نام فروشگاه شما]</strong> خوش آمدید! اینجا فقط یک فروشگاه نیست؛ اینجا حاصل یک رویا، عشق به <strong>[نوع محصولات شما]</strong> و باوری عمیق به قدرت <strong>[یک ارزش کلیدی شما]</strong> است. داستان ما از سال <strong>[سال تاسیس]</strong> با یک هدف ساده شروع شد: ما می‌خواستیم محصولاتی را ارائه دهیم که نه تنها کاربردی، بلکه الهام‌بخش باشند. هر محصولی که امروز می‌بینید، نتیجه ساعت‌ها تلاش، دقت به جزئیات و جستجو برای بهترین‌هاست.
+        </p>
+    </section>
+
+    <section class="content-section">
+        <h2>چرا ما متفاوت هستیم؟</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="icon"><i class="fas fa-gem"></i></div>
+                <h3>کیفیت بی‌پایان</h3>
+                <p>ما به کمتر از عالی رضایت نمی‌دهیم. کیفیت در تمام مراحل، از ایده تا محصول نهایی، حرف اول را می‌زند.</p>
+            </div>
+            <div class="value-card">
+                <div class="icon"><i class="fas fa-pen-ruler"></i></div>
+                <h3>اصالت در طراحی</h3>
+                <p>هر محصول ما داستانی منحصر به فرد برای گفتن دارد. ما به طراحی‌های اصیل و خلاقانه افتخار می‌کنیم.</p>
+            </div>
+            <div class="value-card">
+                <div class="icon"><i class="fas fa-heart"></i></div>
+                <h3>شما، در مرکز توجه</h3>
+                <p>بزرگترین سرمایه ما، اعتماد شماست. ما اینجا هستیم تا تجربه‌ای فراتر از یک خرید ساده را برایتان رقم بزنیم.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section cta-section">
+        <h2>به خانواده ما بپیوندید</h2>
+        <p>این تازه اول راه است. از شما دعوت می‌کنیم تا بخشی از داستان ما باشید، محصولات ما را کشف کنید و به خانواده بزرگ ما بپیوندید.</p>
+        <a href="{% url 'product_list' %}" class="btn">مشاهده همه محصولات</a>
+    </section>
+
+</div>
+{% endblock content %}

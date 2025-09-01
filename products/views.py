@@ -155,10 +155,6 @@ def product_detail_view(request, pk):
     return render(request, 'products/product_detail.html', context)
 
 
-class ContactUs(TemplateView):
-    template_name = 'contact_us.html'
-
-
 
 @login_required # این دکوریتور اجازه نمی‌دهد کاربر لاگین نکرده به این ویو دسترسی داشته باشد
 def toggle_wishlist_view(request):
@@ -202,3 +198,16 @@ class WishlistPageView(LoginRequiredMixin, ListView):
         queryset = Product.objects.filter(pk__in=user_wishlist_pks)
         
         return queryset
+
+
+
+class ContactUs(TemplateView):
+    template_name = 'contact_us.html'
+
+
+class TermsAndConditions(TemplateView):
+    template_name = 'terms_conditions.html'
+
+
+class AboutUs(TemplateView):
+    template_name = 'about.html'

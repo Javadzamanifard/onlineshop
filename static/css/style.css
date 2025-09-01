@@ -18,3 +18,318 @@
     /* CUSTOM WIDTHS */
     .w-sm-75 { width: 75%!important; }
 }
+
+
+
+    /* استایل‌های جدید برای صفحه تماس با ما */
+    .contact-page-container {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 20px;
+        font-family: 'Vazirmatn', sans-serif; /* پیشنهاد می‌شود از یک فونت فارسی زیبا استفاده کنید */
+        text-align: center;
+        background-color: #f9f9f9;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .contact-page-container h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    .contact-page-container .intro-text {
+        font-size: 1.8rem;
+        color: #666;
+        max-width: 800px;
+        margin: 0 auto 40px auto;
+        line-height: 1.8;
+    }
+
+    .contact-info-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 25px; /* فاصله بین کارت‌ها */
+        flex-wrap: wrap; /* برای نمایش صحیح در موبایل */
+        margin-bottom: 50px;
+    }
+
+    .contact-card {
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 30px 25px;
+        flex-basis: 300px; /* عرض پایه هر کارت */
+        flex-grow: 1; /* اجازه می‌دهد کارت‌ها در صورت وجود فضا، بزرگ شوند */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-card .icon {
+        font-size: 2.5rem;
+        color: #007bff; /* رنگ آیکون‌ها */
+        margin-bottom: 20px;
+    }
+
+    .contact-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    .contact-card p {
+        font-size: 1.5rem;
+        color: #555;
+        margin: 0;
+        direction: ltr;
+    }
+    
+    .contact-card .info-text {
+        font-size: 1.4rem;
+        color: #777;
+        margin-top: 10px;
+        direction: rtl;
+    }
+
+    .contact-card a {
+        color: #0056b3;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    
+    .contact-page-container .form-title {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #333;
+        border-top: 1px solid #e0e0e0;
+        padding-top: 40px;
+    }
+
+/* ---- کد جدید برای بزرگ کردن شماره و ایمیل ---- */
+
+/* این سلکتور پاراگراف‌های داخل کارت را انتخاب می‌کند
+   به جز پاراگرا‌ف‌هایی که متن راهنما هستند (کلاس info-text) */
+.contact-card p:not(.info-text) {
+    font-size: 1.4rem;   /* اندازه فونت را به دلخواه تغییر بده */
+    font-weight: 500;     /* فونت را کمی ضخیم‌تر می‌کند */
+    color: #111;           /* رنگ متن را کمی تیره‌تر می‌کند تا بیشتر به چشم بیاید */
+    margin-top: 8px;      /* کمی فاصله از بالا ایجاد می‌کند */
+}
+
+/* برای اینکه لینک ایمیل هم همین استایل را بگیرد */
+.contact-card p:not(.info-text) a {
+    font-size: inherit; /* اندازه فونت را از پدرش (تگ p) به ارث می‌برد */
+    font-weight: inherit; /* ضخامت فونت را به ارث می‌برد */
+    color: #0056b3;
+}
+
+
+ /* استایل‌های اختصاصی برای صفحه قوانین */
+    .rules-page-wrapper {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 30px 40px;
+        font-family: 'Vazirmatn', sans-serif; /* پیشنهاد فونت فارسی خوانا */
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.07);
+        line-height: 1.9; /* فاصله خطوط برای خوانایی متن طولانی */
+    }
+
+    .rules-page-wrapper h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 25px;
+        color: #2c3e50;
+    }
+    
+    .rules-page-wrapper .intro-paragraph {
+        font-size: 1.5rem;
+        text-align: justify;
+        color: #555;
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .rule-section {
+        margin-bottom: 35px;
+    }
+
+    .rule-section h2 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #34495e;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .rule-section h2 .icon {
+        font-size: 1.4rem;
+        margin-left: 12px; /* فاصله آیکون از متن در حالت راست‌چین */
+        color: #007bff;
+        width: 30px; /* برای هم‌ترازی بهتر */
+        text-align: center;
+    }
+    
+    .rule-section ul {
+        list-style: none;
+        padding-right: 40px; /* ایجاد تورفتگی برای لیست */
+    }
+
+    .rule-section li {
+        font-size: 1.5rem;
+        color: #333;
+        margin-bottom: 12px;
+        position: relative;
+    }
+    
+    /* ایجاد یک نقطه زیبا قبل از هر آیتم لیست */
+    .rule-section li::before {
+        content: '•';
+        position: absolute;
+        right: -20px;
+        top: 0;
+        color: #007bff;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .rule-section strong {
+        color: #000;
+        font-weight: 600;
+    }
+
+    .closing-statement {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+        text-align: center;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #333;
+    }
+
+    /* بخش درباره‌ی ما) */
+    .about-page-container {
+        font-family: 'Vazirmatn', sans-serif;
+        color: #e0ccb6;
+    }
+
+    /* بخش هیرو (بالای صفحه) */
+    .about-hero {
+        background-color: #f5efe9; /* این یک رنگ کرم-صورتی ملایم شبیه هدر شماست */
+        padding: 80px 20px;
+        text-align: center;
+        color: #444; /* رنگ متن را برای خوانایی بهتر، تیره‌تر کردیم */
+        border-radius: 12px;
+        margin: 20px auto;
+        max-width: 1200px;
+        border-bottom: 2px solid #eee5e0;
+    }
+    .about-hero h1 {
+        font-size: 3rem;
+        font-weight: 700;
+    }
+
+    /* بخش‌های محتوایی */
+    .content-section {
+        max-width: 900px;
+        margin: 60px auto;
+        padding: 0 20px;
+    }
+
+    .content-section h2 {
+        text-align: center;
+        font-size: 2.2rem;
+        font-weight: 600;
+        margin-bottom: 30px;
+        position: relative;
+        padding-bottom: 15px;
+    }
+    
+    /* خط زیر عنوان‌ها */
+    .content-section h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: #007bff;
+        border-radius: 2px;
+    }
+
+    .content-section p {
+        font-size: 1.5rem;
+        line-height: 1.9;
+        text-align: justify;
+    }
+    
+    /* بخش ارزش‌ها */
+    .values-grid {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        margin-top: 50px;
+    }
+
+    .value-card {
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        padding: 30px;
+        text-align: center;
+        flex-basis: 280px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        border: 1px solid #eee;
+    }
+
+    .value-card .icon {
+        font-size: 2.5rem;
+        color: #007bff;
+        margin-bottom: 20px;
+    }
+
+    .value-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+    }
+
+    /* بخش پایانی و دعوت به اقدام */
+    .cta-section {
+        background-color: #f0f8ff;
+        border-radius: 10px;
+        padding: 40px;
+        text-align: center;
+    }
+
+    .cta-section a.btn {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 30px;
+        background-color: #e77f67; /* رنگ اصلی جدید: نارنجی-مرجانی ملایم */
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1.5rem;
+        font-weight: 500;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        border: none;
+    }
+
+    /* حالت هاور (وقتی موس روی دکمه می‌رود) */
+    .cta-section a.btn:hover {
+        background-color: #d3705a; /* نسخه تیره‌تر از رنگ اصلی */
+        transform: translateY(-2px); /* کمی به بالا حرکت می‌کند */
+    }
