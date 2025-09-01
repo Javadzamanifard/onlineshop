@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ProductListView, product_detail_view
+from .views import ProductListView, product_detail_view, ContactUs
 
 urlpatterns = [
     # آدرس برای لیست محصولات: /products/
@@ -8,4 +8,6 @@ urlpatterns = [
     # path('<int:pk>/', product_detail, name='product_detail'),
     # path('<slug:slug>/', product_detail_view, name='product_detail'),
     path('<int:pk>/', product_detail_view, name='product_detail'),
+    path('contact/', ContactUs.as_view(), name='contact_us'),
+    
 ]

@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from .models import Product, Category, Comment
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
@@ -135,5 +135,7 @@ def product_detail_view(request, pk):
     return render(request, 'products/product_detail.html', context)
 
 
+class ContactUs(TemplateView):
+    template_name = 'contact_us.html'
 
 
