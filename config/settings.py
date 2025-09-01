@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'products',  # or products.apps.ProductsConfig
     'cart',
     'orders',
+    'payment',
     
     # Thirdpart apps
     'allauth',
@@ -190,3 +191,5 @@ ACCOUNT_FORMS = {
 # Bootstrap config
 CRISPY_ALLOWED_TEMPLAATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+ZARINPAL_MERCHANT_ID = env.str('ZARINPAL_MERCHANT')
