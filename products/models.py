@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.translation import gettext as _
 
 from accounts.models import CustomUser
 
@@ -20,12 +21,12 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='products')
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='products', verbose_name=_('category'))
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     slug = models.SlugField(max_length=255, unique=True, blank=True)
     price = models.PositiveIntegerField()
-    stock = models.PositiveIntegerField()
+    stock = models.PositiveIntegerField(verbose_name=_('stock'))
     image = models.ImageField(upload_to='products/product_img', default='products/product_img/default.jpg', blank=True, null=True)
     
     created_at = models.DateTimeField(auto_now_add=True)

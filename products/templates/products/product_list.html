@@ -1,6 +1,6 @@
 {% extends "_base.html" %}
 {% load static %}
-
+{% load i18n %}
     {% block title %} product list {% endblock title %}
 
 {% block content %}
@@ -81,7 +81,7 @@
                                                                             {% comment %} {{add_to_cart_form | crispy}} {% endcomment %}
                                                                             {% comment %} <input type="hidden" class="quantity-input" name="quantity" id="qty" value="1" min="1" max="30"> {% endcomment %}
                                                                             <input type="hidden" class="quantity-input" name="quantity" id="qty" value="1">
-                                                                            <button type="submit" class="btn btn-small btn-bg-sand btn-color-dark px-3 mt-3"> اضافه کردن به سبد خرید </button>
+                                                                            <button type="submit" class="btn btn-small btn-bg-sand btn-color-dark px-3 mt-3"> {% trans "Add to cart" %}</button>
                                                                         </form>
                                                                     {% comment %} <a href="cart.html" class="btn btn-small btn-bg-sand btn-color-dark px-3">اضافه کردن به سبد خرید</a> {% endcomment %}
                                                                 </div>
