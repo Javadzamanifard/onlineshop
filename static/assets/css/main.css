@@ -597,15 +597,15 @@ textarea,
 }
 
 .footer-menu li:not(:last-child) {
-  border-right: 2px solid #c9c9c9;
-  padding-right: 18px;
-  margin-right: 18px;
+  border-left: 2px solid #c9c9c9;
+  padding-left: 18px;
+  margin-left: 18px;
 }
 
 @media (max-width: 47.94em) {
   .footer-menu li:not(:last-child) {
-    padding-right: 8px;
-    margin-right: 8px;
+    padding-left: 8px;
+    margin-left: 8px;
   }
 }
 
@@ -24883,4 +24883,15 @@ a,
 
 .primary-bg {
   background-color: #c2080f;
+}
+
+
+.shopping-for-product {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+}
+
+.shopping-for-product .shopping-for-action {
+    margin-top: auto !important;
 }

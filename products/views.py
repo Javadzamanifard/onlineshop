@@ -118,6 +118,7 @@ class ProductListView(ListView):
 #         ).order_by('-created_at')
 #         return context
 
+@login_required
 def product_detail_view(request, pk):
     product = get_object_or_404(Product, pk = pk)
     product_comments = product.comments.filter(is_active = True, parent__isnull=True)

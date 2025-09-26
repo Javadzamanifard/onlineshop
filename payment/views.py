@@ -30,7 +30,7 @@ def payment_process(request):
         'merchant_id' : settings.ZARINPAL_MERCHANT_ID, 
         'amount' : price_rial,
         'description' : f'#{order.id} by {order.first_name} {order.last_name}',
-        'callback_url' : request.build_absolute_url(reverse('payment:payment_callback')),
+        'callback_url' : request.build_absolute_uri(reverse('payment:payment_callback')),
     }
     
     ZARINPAL_REQUEST_URL = 'https://payment.zarinpal.com/pg/v4/payment/request.json'

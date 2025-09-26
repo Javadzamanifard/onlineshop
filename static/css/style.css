@@ -333,3 +333,42 @@
         background-color: #d3705a; /* نسخه تیره‌تر از رنگ اصلی */
         transform: translateY(-2px); /* کمی به بالا حرکت می‌کند */
     }
+
+
+ul.header-toolbar {
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    list-style-type: none !important;
+    margin-bottom: 0 !important;
+    padding-right: 0 !important;
+}
+ul.header-toolbar .header-toolbar__item {
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+}
+
+/* بخش ۲ (اصلاح نهایی و دقیق): کنترل اندازه خودِ فرمِ جستجو */
+/* ما عرض را مستقیماً به خود تگ form می‌دهیم تا روی ستون‌بندی تاثیر نگذارد */
+div.header-search-form form {
+    max-width: 380px !important; /* عرض خودِ فرم را محدود می‌کند */
+    width: 100% !important;      /* اطمینان از پر کردن فضای موجود تا سقف max-width */
+    margin: 0 auto !important;   /* فرم را در ستون خودش (که حالا اندازه درستی دارد) وسط‌چین می‌کند */
+    border: 1px solid #ccc !important;
+    border-radius: 50px !important;
+}
+
+/* این کد برای حذف خط قرمز احتمالی در حالت active است */
+div.header-search-form.active {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* بخش ۳: بازگرداندن استایل اصلی هدر (این بخش صحیح است و تغییری نکرده) */
+header .header-inner.fixed-header {
+    background-color: #fff8ee !important;
+    border-bottom: 1px solid #ffe5c9 !important;
+    border-bottom-left-radius: 65px;
+    border-bottom-right-radius: 65px;
+}
