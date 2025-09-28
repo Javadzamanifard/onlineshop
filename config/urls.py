@@ -30,6 +30,7 @@ urlpatterns = [
     path('orders/', include('orders.urls')),
     path('payment/', include('payment.urls')),
     path('pages/', include('pages.urls')),
+    path('rosetta/', include('rosetta.urls')),
 ]   # or + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 # For the development environment

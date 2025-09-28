@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
+    'django_jalali',
+
     # local apps
     'accounts',
     'profiles',
@@ -47,6 +49,9 @@ INSTALLED_APPS = [
     'orders',
     'payment',
     'pages',
+    'rosetta',
+    'Api',
+    'rest_framework',
     
     # Thirdpart apps
     'allauth',
@@ -143,12 +148,24 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa'
 
-TIME_ZONE = 'UTC'
+LANGUAGES = [
+    ('fa', 'فارسی'),
+    ('en', 'English'),
+]
 
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
+
+LANGUAGE_BIDI = True
+
+# تنظیمات زمان و تاریخ
+TIME_ZONE = 'Asia/Tehran'
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
 
 
@@ -194,3 +211,8 @@ CRISPY_ALLOWED_TEMPLAATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 ZARINPAL_MERCHANT_ID = env.str('ZARINPAL_MERCHANT')
+
+# تنظیمات Rosetta
+ROSETTA_MESSAGES_PER_PAGE = 150
+ROSETTA_ENABLE_TRANSLATION_SUGGESTIONS = True
+ROSETTA_LANGUAGE_GROUPS = True

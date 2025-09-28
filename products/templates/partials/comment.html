@@ -1,4 +1,5 @@
 {% load static %}
+{% load jformat %}
 
 <li class="d-flex mb-4">
     {% comment %} <div class="flex-shrink-0">
@@ -10,7 +11,8 @@
             <h6 class="fw-bold mb-0">
                 {{ comment.user.username|default:comment.guest_name|default:"مهمان" }}
             </h6>
-            <span class="text-muted small">{{ comment.created_at }}</span>
+            {% comment %} <span class="text-muted small">{{ comment.created_at|jformat:'%Y/%m/%d' }}</span> {% endcomment %}
+            <span class="text-muted small">{{ comment.created_at|jformat:'%Y/%m/%d %H:%M' }}</span>
         </div>
         
         <p class="mb-2 mt-2">
