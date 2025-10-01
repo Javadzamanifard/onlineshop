@@ -1,7 +1,11 @@
 {% extends "_base.html" %}
 {% load static %}
 {% load i18n %}
-    {% block title %} product list {% endblock title %}
+{% load humanize %}
+{% load trans2farsi_tags %}
+
+
+{% block title %} product list {% endblock title %}
 
 {% block content %}
         <body dir='rtl'>
@@ -70,7 +74,7 @@
                                                                         <a href="product-details.html">{{ product.name }}</a>
                                                                     </h3>
                                                                     <div class="product-price-wrapper mb--30">
-                                                                        <span class="money text-success">{{ product.price }}تومان</span>
+                                                                        <span class="money text-success">{{ product.price | intcomma:False  | en2fa }}تومان</span>
                                                                         <span class="money-separator">-</span>
                                                                         <span class="old-price text-danger">
                                                                             <span class="money text-danger">{{ product.price }}تومان</span>

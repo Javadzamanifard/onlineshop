@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-26 06:52-0700\n"
-"PO-Revision-Date: 2025-09-26 07:07+0330\n"
+"POT-Creation-Date: 2025-10-01 06:19-0700\n"
+"PO-Revision-Date: 2025-10-01 06:20+0330\n"
 "Last-Translator: محمد جواد زمانی <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,10 @@ msgstr "دسته بندی "
 msgid "stock"
 msgstr "موجودی"
 
-#: .\templates\products\product_list.html:88
+#: .\templates\products\product_detail.html:36
+msgid "$"
+msgstr "تومان"
+
+#: .\templates\products\product_list.html:92
 msgid "Add to cart"
 msgstr "اضافه کردن به سبد خرید"

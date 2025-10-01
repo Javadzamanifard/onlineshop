@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'django.contrib.humanize',
 
     'django_jalali',
 
@@ -52,6 +54,7 @@ INSTALLED_APPS = [
     'rosetta',
     'Api',
     'rest_framework',
+    'persiantranslation',
     
     # Thirdpart apps
     'allauth',
