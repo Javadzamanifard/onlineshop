@@ -98,3 +98,117 @@ class WishListSerializer(serializers.ModelSerializer):
         return data
 
 
+from rest_framework import serializers
+from .models import Category, Product, Comment, WishList
+from accounts.models import CustomUser
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'name', 'slug']
+        read_only_fields = ['slug']
+
+class ProductListSerializer(serializers.ModelSerializer):
+    category = CategorySerializer(read_only=True)
+    category_id = serializers.PrimaryKeyRelatedField(
+        queryset=Category.objects.all(), 
+        source='category', 
+        write_only=True
+    )
+    
+    class Meta:
+        model = Product
+        fields = [
+            'id', 'category', 'category_id', 'name', 'slug', 
+            'price', 'stock', 'image', 'created_at', 'updated_at'
+        ]
+        read_only_fields = ['slug', 'created_at', 'updated_at']
+
+class ProductDetailSerializer(serializers.ModelSerializer):
+    category = CategorySerializer(read_only=True)
+    category_id = serializers.PrimaryKeyRelatedField(
+        queryset=Category.objects.all(), 
+        source='category', 
+        write_only=True
+    )
+    comments_count = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = Product
+        fields = [
+            'id', 'category', 'category_id', 'name', 'description', 'slug',
+            'price', 'stock', 'image', 'created_at', 'updated_at', 'comments_count'
+        ]
+        read_only_fields = ['slug', 'created_at', 'updated_at']
+    
+    def get_comments_count(self, obj):
+        return obj.comments.filter(is_active=True).count()
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'username', 'email']
+
+class CommentSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all(), write_only=True)
+    product_name = serializers.CharField(source='product.name', read_only=True)
+    replies = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = Comment
+        fields = [
+            'id', 'user', 'guest_name', 'product', 'product_name', 
+            'content', 'parent', 'replies', 'created_at', 'updated_at', 'is_active'
+        ]
+        read_only_fields = ['created_at', 'updated_at']
+    
+    def get_replies(self, obj):
+        if obj.replies.exists():
+            return CommentSerializer(obj.replies.filter(is_active=True), many=True).data
+        return []
+    
+    def validate(self, data):
+        # اگر کاربر لاگین نکرده باشد، باید guest_name پر شود
+        request = self.context.get('request')
+        if request and not request.user.is_authenticated and not data.get('guest_name'):
+            raise serializers.ValidationError("برای کاربران مهمان، نام الزامی است.")
+        return data
+
+class WishListSerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    product = ProductListSerializer(read_only=True)
+    product_id = serializers.PrimaryKeyRelatedField(
+        queryset=Product.objects.all(), 
+        source='product', 
+        write_only=True
+    )
+    
+    class Meta:
+        model = WishList
+        fields = ['id', 'user', 'product', 'product_id', 'added_date']
+        read_only_fields = ['added_date']
+    
+    def validate(self, data):
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            product = data.get('product')
+            if WishList.objects.filter(user=request.user, product=product).exists():
+                raise serializers.ValidationError("این محصول قبلاً به لیست علاقه‌مندی‌ها اضافه شده است.")
+        return data
+
+# سریالایزر برای ایجاد محصول (بدون جزئیات اضافی)
+class ProductCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = [
+            'category', 'name', 'description', 'price', 'stock', 'image'
+        ]
+    
+    def create(self, validated_data):
+        # ایجاد slug خودکار
+        validated_data['slug'] = slugify(validated_data['name'])
+        return super().create(validated_data)
+
+
+
